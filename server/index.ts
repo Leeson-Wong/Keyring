@@ -95,7 +95,17 @@ async function main() {
 
       // ─── POST /api/keys ───
       if (url === '/api/keys' && method === 'POST') {
-        const body: CreateKeyInput = JSON.parse(await readBody(req));
+        let body: CreateKeyInput;
+        try {
+          body = JSON.parse(await readBody(req));
+        } catch {
+          json(res, 400, { error: 'Invalid JSON body' });
+          return;
+        }
+        if (!body.platform || !body.function || !body.apiKey) {
+          json(res, 400, { error: 'Missing required fields: platform, function, apiKey' });
+          return;
+        }
         const entry = await storage.create(body);
         json(res, 201, entry);
         return;
@@ -103,7 +113,13 @@ async function main() {
 
       // ─── PUT /api/keys/:id ───
       if (keyMatch && method === 'PUT') {
-        const body = JSON.parse(await readBody(req));
+        let body: any;
+        try {
+          body = JSON.parse(await readBody(req));
+        } catch {
+          json(res, 400, { error: 'Invalid JSON body' });
+          return;
+        }
         const entry = await storage.update(keyMatch[1], body, body.changeNote);
         json(res, entry ? 200 : 404, entry || { error: 'Not found' });
         return;
