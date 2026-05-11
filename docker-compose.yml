@@ -1,0 +1,9 @@
+services:
+  keyring:
+    build: .
+    ports:
+      - "5179:5179"
+    volumes:
+      - ./data:/app/data
+      - ./config.json:/app/config.json
+    restart: unless-stopped

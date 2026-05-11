@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-server/
+*.tsbuildinfo
+
+# Runtime data (contains API keys — NEVER commit)
+data/
+data/keyring.json
+
+# Config files with possible secrets
+config.json
+config.local.json
+*.local.json
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
