@@ -22,7 +22,7 @@ Instead of scattering API keys across `.env` files, config files, and environmen
 | **Deploy** | Complex (Go binary, storage backend) | Needs PostgreSQL | **Single JSON file** |
 | **Target** | Enterprise teams | Dev teams | **Solo developers / AI agents** |
 | **MCP support** | Via plugin | Via plugin | **Native, with auto-discovery** |
-| **Weight** | Heavy | Medium | **~5 MB** |
+| **Weight** | Heavy | Medium | **Light (JSON file, no DB)** |
 
 Keyring fills the gap between `.env` files (too primitive) and enterprise secret managers (too heavy).
 
